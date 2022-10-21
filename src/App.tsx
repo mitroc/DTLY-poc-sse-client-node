@@ -43,7 +43,9 @@ function App() {
   };
 
   useEffect(() => {
-    eventSource.current = new EventSource('https://mitroc-sse-server.herokuapp.com');
+    eventSource.current = new EventSource(
+      `${window.location.origin}/sseapi/events`
+    );
 
     /**
      * Method has no longer the assignment of the event handler to the
