@@ -4,10 +4,8 @@ const app = express();
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const PORT = process.env.PORT || 3000;
-const target = process.env.SSE_SERVER_LOCAL;
-// const target = process.env.SSE_SERVER_HEROKU;
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../', 'build')));
 
 app.use(
   '/sseapi',
@@ -17,12 +15,12 @@ app.use(
     pathRewrite: {
       '^/sseapi': '',
     },
-    target,
+    target: process.env.REACT_APP_SSE_SERVER,
   })
 );
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../', 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {

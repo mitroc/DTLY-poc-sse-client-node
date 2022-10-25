@@ -16,8 +16,10 @@
     "typescript": "^4.8.4"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "node www/server.js",
+    "dev-local": "REACT_APP_SSE_SERVER=http://localhost:5000 react-scripts start",
+    "dev-heroku": "REACT_APP_SSE_SERVER=https://mitroc-sse-server.herokuapp.com react-scripts start",
+    "start-local": "REACT_APP_SSE_SERVER=http://localhost:5000 node www/server.js",
+    "start": "REACT_APP_SSE_SERVER=https://mitroc-sse-server.herokuapp.com node www/server.js",
     "build": "react-scripts build"
   },
   "eslintConfig": {
