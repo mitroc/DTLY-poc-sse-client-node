@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTable } from 'react-table';
-import './App.css';
 import getInitialFlightData from './DataProvider';
 import columns from './Columns';
 
@@ -67,7 +66,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div>
       <button onClick={stopUpdates}>Stop updates</button>
 
       <table {...getTableProps()}>

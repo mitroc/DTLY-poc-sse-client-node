@@ -4,18 +4,20 @@ const app = express();
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const PORT = process.env.PORT || 3000;
+const target = process.env.SSE_SERVER_LOCAL;
+// const target = process.env.SSE_SERVER_HEROKU;
 
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(
   '/sseapi',
   createProxyMiddleware({
-    target: 'https://mitroc-sse-server.herokuapp.com',
     changeOrigin: true,
+    logLevel: 'debug',
     pathRewrite: {
       '^/sseapi': '',
     },
-    logLevel: 'debug',
+    target,
   })
 );
 
